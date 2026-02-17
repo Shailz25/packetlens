@@ -45,16 +45,12 @@ npm run sidecar:build
 npm run tauri:build
 ```
 
-Portable builds:
+Portable build (slim only):
 ```bash
 npm run tauri:portable
 ```
 
-Or separately:
-```bash
-npm run tauri:portable:full
-npm run tauri:portable:slim
-```
+This project now standardizes on slim portable output only.
 
 ## Release Publishing (Date-Based Tags)
 This project uses release tags in this format:

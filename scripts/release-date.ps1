@@ -2,7 +2,7 @@ param(
   [string]$Repo = "Shailz25/packetlens",
   [string]$VersionDate = (Get-Date -Format "yyyy.MM.dd"),
   [string]$MsiDir = "src-tauri/target/release/bundle/msi",
-  [string]$PortableSlimDir = "dist-portable/PacketLensPortable-Slim",
+  [string]$PortableRootDir = "dist-portable",
   [switch]$Build
 )
 
@@ -58,8 +58,16 @@ if (-not $msiFile) {
   throw "No MSI file found in: $MsiDir"
 }
 
-if (-not (Test-Path $PortableSlimDir)) {
-  throw "Portable slim directory not found: $PortableSlimDir"
+if (-not (Test-Path $PortableRootDir)) {
+  throw "Portable root directory not found: $PortableRootDir"
+}
+
+$portableSlimDir = Get-ChildItem -Path $PortableRootDir -Directory |
+  Where-Object { $_.Name -like "PacketLensPortable-Slim*" } |
+  Sort-Object LastWriteTime -Descending |
+  Select-Object -First 1
+if (-not $portableSlimDir) {
+  throw "No slim portable output directory found under: $PortableRootDir"
 }
 
 $releaseAssetsDir = "release-assets"
@@ -80,7 +88,7 @@ if (Test-Path $portableZipLatest) {
 }
 
 Write-Host "Packaging portable ZIP: $portableZip"
-Compress-Archive -Path "$PortableSlimDir/*" -DestinationPath $portableZip -Force
+Compress-Archive -Path (Join-Path $portableSlimDir.FullName "*") -DestinationPath $portableZip -Force
 Copy-Item $portableZip $portableZipLatest -Force
 
 Write-Host "Preparing installer asset: $msiReleaseFile"
