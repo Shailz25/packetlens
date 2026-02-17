@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="eye" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#082f63"/>
+      <stop offset="100%" stop-color="#061b3f"/>
+    </linearGradient>
+    <radialGradient id="iris" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#9bf5ee"/>
+      <stop offset="30%" stop-color="#2ed9d1"/>
+      <stop offset="65%" stop-color="#149ca0"/>
+      <stop offset="100%" stop-color="#0a425e"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#111827" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Eye body -->
+  <path d="M88 258 C146 170, 230 146, 318 170 C367 184, 404 214, 435 258 C404 303, 367 332, 318 346 C230 370, 146 346, 88 258 Z"
+        fill="url(#eye)"/>
+
+  <!-- Left circuit traces -->
+  <circle cx="88" cy="258" r="8" fill="#ffffff" opacity="0.9"/>
+  <path d="M100 258 H140 L156 234 H170" stroke="#e5e7eb" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M100 280 H170 V300 H188" stroke="#e5e7eb" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M114 236 H132" stroke="#e5e7eb" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <circle cx="170" cy="234" r="8" fill="none" stroke="#e5e7eb" stroke-width="6"/>
+  <circle cx="188" cy="300" r="8" fill="none" stroke="#e5e7eb" stroke-width="6"/>
+
+  <!-- Right connection -->
+  <path d="M420 238 H446" stroke="#e5e7eb" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <circle cx="446" cy="238" r="8" fill="#e5e7eb"/>
+
+  <!-- Lens / iris -->
+  <circle cx="256" cy="258" r="90" fill="#09224a" opacity="0.7"/>
+  <circle cx="256" cy="258" r="78" fill="url(#iris)"/>
+  <circle cx="256" cy="258" r="58" fill="#24bdbd" opacity="0.8"/>
+  <circle cx="256" cy="258" r="38" fill="#1cb4ba" opacity="0.9"/>
+  <circle cx="256" cy="258" r="22" fill="#ebfffb"/>
+  <circle cx="284" cy="236" r="12" fill="#ffffff" opacity="0.85"/>
+
+  <!-- Bars + baseline -->
+  <rect x="176" y="330" width="24" height="40" rx="2" fill="#149ca0"/>
+  <rect x="218" y="300" width="28" height="70" rx="2" fill="#1aa6ac"/>
+  <rect x="264" y="286" width="26" height="84" rx="2" fill="#188e97"/>
+  <rect x="112" y="372" width="292" height="10" rx="5" fill="#09224a"/>
+</svg>
