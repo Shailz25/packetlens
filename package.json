@@ -13,7 +13,9 @@
     "tauri:build": "npm run sidecar:build && tauri build",
     "tauri:portable:full": "npm run sidecar:build && tauri build --no-bundle && powershell -ExecutionPolicy Bypass -File scripts/build-portable.ps1 -Variant full",
     "tauri:portable:slim": "npm run sidecar:build && tauri build --no-bundle && powershell -ExecutionPolicy Bypass -File scripts/build-portable.ps1 -Variant slim",
-    "tauri:portable": "npm run sidecar:build && tauri build --no-bundle && powershell -ExecutionPolicy Bypass -File scripts/build-portable.ps1 -Variant full && powershell -ExecutionPolicy Bypass -File scripts/build-portable.ps1 -Variant slim"
+    "tauri:portable": "npm run sidecar:build && tauri build --no-bundle && powershell -ExecutionPolicy Bypass -File scripts/build-portable.ps1 -Variant full && powershell -ExecutionPolicy Bypass -File scripts/build-portable.ps1 -Variant slim",
+    "release:date": "powershell -ExecutionPolicy Bypass -File scripts/release-date.ps1",
+    "release:date:build": "powershell -ExecutionPolicy Bypass -File scripts/release-date.ps1 -Build"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.10.1",

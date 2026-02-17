@@ -52,6 +52,26 @@ npm run tauri:portable:full
 npm run tauri:portable:slim
 ```
 
+## Release Publishing (Date-Based Tags)
+This project uses release tags in this format:
+- `vYYYY.MM.DD` (example: `v2026.02.17`)
+
+One-command publish (uses existing local build artifacts):
+```bash
+npm run release:date
+```
+
+Build + publish in one command:
+```bash
+npm run release:date:build
+```
+
+What the script does:
+- Computes today's tag as `vYYYY.MM.DD`.
+- Uses the newest MSI from `src-tauri/target/release/bundle/msi`.
+- Packages `dist-portable/PacketLensPortable-Slim` as a ZIP.
+- Creates or updates the GitHub release in `Shailz25/packetlens`.
+
 ## Notes
 - The sidecar binary is bundled from `sidecar/dist/packetlens-sidecar.exe`.
 - This repository is currently packaged and supported for Windows.
