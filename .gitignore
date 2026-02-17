@@ -17,6 +17,8 @@ release-assets
 sidecar/dist
 sidecar/build
 sidecar/*.spec
+**/__pycache__/
+*.pyc
 
 # Editor directories and files
 .vscode/*
