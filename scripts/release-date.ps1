@@ -69,16 +69,23 @@ if (-not (Test-Path $releaseAssetsDir)) {
 
 $portableZip = Join-Path $releaseAssetsDir "PacketLensPortable-Slim-$tag.zip"
 $msiReleaseFile = Join-Path $releaseAssetsDir "PacketLens-Installer-$tag.msi"
+$portableZipLatest = Join-Path $releaseAssetsDir "PacketLensPortable-Slim-latest.zip"
+$msiReleaseFileLatest = Join-Path $releaseAssetsDir "PacketLens-Installer-latest.msi"
 
 if (Test-Path $portableZip) {
   Remove-Item $portableZip -Force
 }
+if (Test-Path $portableZipLatest) {
+  Remove-Item $portableZipLatest -Force
+}
 
 Write-Host "Packaging portable ZIP: $portableZip"
 Compress-Archive -Path "$PortableSlimDir/*" -DestinationPath $portableZip -Force
+Copy-Item $portableZip $portableZipLatest -Force
 
 Write-Host "Preparing installer asset: $msiReleaseFile"
 Copy-Item $msiFile.FullName $msiReleaseFile -Force
+Copy-Item $msiReleaseFile $msiReleaseFileLatest -Force
 
 $notes = @"
 Release version format: vYYYY.MM.DD
@@ -99,10 +106,10 @@ try {
 
 if ($releaseExists) {
   Write-Host "Release $tag exists. Uploading/replacing assets..."
-  Invoke-Gh release upload $tag $msiReleaseFile $portableZip --repo $Repo --clobber
+  Invoke-Gh release upload $tag $msiReleaseFile $portableZip $msiReleaseFileLatest $portableZipLatest --repo $Repo --clobber
 } else {
   Write-Host "Creating release $tag..."
-  Invoke-Gh release create $tag $msiReleaseFile $portableZip --repo $Repo --title $releaseTitle --notes $notes
+  Invoke-Gh release create $tag $msiReleaseFile $portableZip $msiReleaseFileLatest $portableZipLatest --repo $Repo --title $releaseTitle --notes $notes
 }
 
 Write-Host ""

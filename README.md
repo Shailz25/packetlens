@@ -19,6 +19,10 @@ Download from GitHub Releases and choose one of these assets:
 Release tags follow this version format:
 - `vYYYY.MM.DD` (example: `v2026.02.17`)
 
+Shareable "latest build" links (always point to newest release asset):
+- Installer: `https://github.com/Shailz25/packetlens/releases/latest/download/PacketLens-Installer-latest.msi`
+- Portable: `https://github.com/Shailz25/packetlens/releases/latest/download/PacketLensPortable-Slim-latest.zip`
+
 ## Getting Started
 1. Download the latest release assets.
 2. Install via MSI, or extract and run the portable package.
@@ -71,6 +75,7 @@ What the script does:
 - Uses the newest MSI from `src-tauri/target/release/bundle/msi`.
 - Packages `dist-portable/PacketLensPortable-Slim` as a ZIP.
 - Creates or updates the GitHub release in `Shailz25/packetlens`.
+- Uploads both versioned files and stable `*-latest` assets for easy sharing.
 
 ## Notes
 - The sidecar binary is bundled from `sidecar/dist/packetlens-sidecar.exe`.
